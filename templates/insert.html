@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="section3" class="font_color">
+        <br>
+        <h2>Import Medicine</h2>
+        <hr>
+        <form action="{{url_for('import_med')}}" method="post"  style="background-color: rgba(12, 96, 100, 0.541);
+        padding: 100px;
+        padding-bottom: 197px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        ">
+            <label for="med">Medicine Name</label>
+            <select name="medname" id="med"  required>
+                <option value="" disabled selected hidden>Choose</option>
+                <option value="1">Paracetamol</option>
+                <option value="2">Alaxan</option>
+            </select><br><br>
+
+            <label for="truck">Delivery Truck (platenumber)</label>
+            <select name="truck" id="truck" required>
+                <option value="" disabled selected hidden>Choose</option>
+                <option value="1">djq112jd</option>
+                <option value="2">2873jdfh1</option> 
+                <option value="3">hhwu112</option> 
+                <option value="4">221d1d1</option>
+                <option value="5">qwe221ew</option>
+            </select><br><br>
+
+            <label for="area">Storage Area</label>
+            <select name="area" id="area" required>
+                <option value="" disabled selected hidden>Choose</option>
+                <option value="Section 1">Area 1</option>
+                <option value="Section 2">Area 2</option>
+                <option value="Section 3">Area 3</option>
+            </select><br><br>
+
+
+            <label for="empname">Employee Encharge</label>
+            <select name="empname" id="empname">
+                <option value="" disabled selected hidden>Choose</option>
+                <option value="1">jan Lawrence Cebrian</option>
+                <option value="2">Jerson Butawan</option>
+            </select><br><br>
+
+            <label for="imdate">Import Date</label>
+            <input type="date" name="imprtdate" id="imdate" required >
+            <br><br>
+            <label for="exdate">Expriration Date</label>
+            <input type="date" name="exprdate" id="exdate" required>
+            <br><br>
+            <label for="tprod">How Many Products</label>
+            <input type="number" name="tproducts" id="tprod" required >
+            <br><br>
+            <button type="submit">
+                Submit
+            </button>
+        </form>
+    </div>
+</body>
+</html>

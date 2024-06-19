@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        nav {
+            font-size: 15px;
+            background-color: rgba(12, 96, 100, 0.75); 
+            overflow: hidden;
+            position: fixed;
+            justify-content: space-between;
+            top: 0;
+            z-index: 1000;
+            margin: 10px;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        
+        div {
+            height: 831px;
+            display: none;
+            text-align: center;
+            padding-top: 60px;
+            background-image: url('static/leaves.jpg'); 
+            background-size: cover;
+            
+
+        
+
+
+
+        }
+        div.font_color{
+            color: white;
+
+            
+        }
+
+        div.active {
+            display: block;
+        }
+
+        div:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .active {
+            background-color: #DCE8E4;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+      
+            function handleSectionClick(targetId) {
+                var sections = document.querySelectorAll("div");
+                var navLinks = document.querySelectorAll("nav a");
+
+                sections.forEach(function(section) {
+                    section.classList.remove("active");
+                });
+
+                var targetSection = document.getElementById(targetId);
+                targetSection.classList.add("active");
+
+                navLinks.forEach(function(link) {
+                    link.classList.remove("active");
+                });
+
+                var targetLink = document.querySelector("nav a[data-target='" + targetId + "']");
+                targetLink.classList.add("active");
+            }
+
+    
+            var navLinks = document.querySelectorAll("nav a");
+            navLinks.forEach(function(link) {
+                link.addEventListener("click", function() {
+                    var targetId = this.getAttribute("data-target");
+                    handleSectionClick(targetId);
+                });
+            });
+        });
+    </script>
+    <title>Inventory</title>
+</head>
+<body>
+
+    <nav>
+        <a href="javascript:void(0);" data-target="section1">Home</a>
+        <a href="javascript:void(0);" data-target="section2">Storage</a>
+        <a href="javascript:void(0);" data-target="section3">Import Medicine</a>
+        <a href="javascript:void(0);" data-target="section6">Medicine Status</a>
+    </nav>
+    
+    <div id="section1" class = "active font_color" >
+        
+        <p>Welcome to the Pharmacy Inventory System. Manage your inventory with ease and efficiency.</p>
+        
+        
+    </div>
+
+
+
+    <div id="section2" class="font_color" >
+        <br>
+        <h2 >Storage</h2>
+        <hr>
+        <table class="table">
+            <thead class="table-dark">
+                <tr >
+                  <th scope="col">Import Id</th>
+                  <th scope="col">Medicine Name</th>
+                  <th scope="col">Storage Area</th>
+                  <th scope="col">Date Imported</th>
+                  <th scope="col">Total Products</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in storage %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[5] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>
+                        <form action="{{url_for('edit')}}" method="POST">
+                            <input type="hidden" value = "{{row[0]}}" name="id" >
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            
+        </table>
+    </div>
+
+    <div id="section3" class="font_color">
+        <br>
+        <h2>Import Medicine</h2>
+        <hr>
+        <form action="{{url_for('impo')}}" method="post"  style="background-color: rgba(42, 81, 83, 0.541); padding: 20px;
+        padding: 30px;
+        padding-bottom: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: left;
+        text-align: justify;
+        ">
+            <label for="med">Medicine Name</label>
+            <select name="medname" id="med"  required>
+                <option value="" disabled selected hidden>Choose</option>
+                <option value="1">Paracetamol</option>
+                <option value="2">Alaxan</option>
+            </select><br><br>
+
+            <label for="truck">Delivery Truck (platenumber)</label>
+            <select name="truck" id="truck" required>
+                <option value="" disabled selected hidden>Choose</option>
+                <option value="1">djq112jd</option>
+                <option value="2">2873jdfh1</option> 
+                <option value="3">hhwu112</option> 
+                <option value="4">221d1d1</option>
+                <option value="5">qwe221ew</option>
+            </select><br><br>
+
+            <label for="area">Storage Area</label>
+            <select name="area" id="area" required>
+                <option value="" disabled selected hidden>Choose</option>
+                <option value="Section 1">Area 1</option>
+                <option value="Section 2">Area 2</option>
+                <option value="Section 3">Area 3</option>
+            </select><br><br>
+
+
+            <label for="empname">Employee Encharge</label>
+            <select name="empname" id="empname">
+                <option value="" disabled selected hidden>Choose</option>
+                <option value="1">jan Lawrence Cebrian</option>
+                <option value="2">Jerson Butawan</option>
+            </select><br><br>
+
+            <label for="imdate">Import Date</label>
+            <input type="date" name="imprtdate" id="imdate" required >
+            <br><br>
+            <label for="exdate">Expriration Date</label>
+            <input type="date" name="exprdate" id="exdate" required>
+            <br><br>
+            <label for="tprod">How Many Products</label>
+            <input type="number" name="tproducts" id="tprod" required >
+            <br><br>
+            <button type="submit">
+                Submit
+            </button>
+        </form>
+    </div>
+
+
+    <div id="section6" class="font_color">
+        <br>
+        <h2>Medicine Status</h2>
+        <hr>
+        <table class="table">
+            <thead class="table-dark">
+                <tr >
+                  <th scope="col">Import Id</th>
+                  <th scope="col">Medicine Name</th>
+                  <th scope="col">Storage Are</th>
+                  <th scope="col">Expiration Date</th>
+                  <th scope="col">Total Products</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Action</th>
+
+                
+                </tr>
+              </thead>
+              <tbody>
+                {% for row in storage %}
+                <tr>
+                    <td>{{ row[0] }}</td>
+                    <td>{{ row[1] }}</td>
+                    <td>{{ row[3] }}</td>
+                    <td>{{ row[6] }}</td>
+                    <td>{{ row[7] }}</td>
+                    <td>
+                        {% if row[6] != date and row[6] < date%}
+                            Good
+                    
+                        {% else %}
+                            Expired
+                            
+                        {% endif %}
+                    </td>
+                    <td>
+                        <form action="{{url_for('delete')}}" method="POST">
+                            <input type="hidden" value = "{{row[0]}}" name="id" >
+                            <button type="submit">Delete</button>
+                        </form>
+                     
+                        
+                    </td>
+                     
+                </tr>
+                {% endfor %}
+                
+              </tbody>
+            
+        </table>
+    </div>
+
+    <footer style="
+        background-color: rgba(3, 83, 66, 0.74); 
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+    ">
+        <p>&copy; 2023 Pharmacy Inventory and Cashiering System</p>
+    </footer>
+</body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>

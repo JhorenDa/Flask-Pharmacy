@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="{{url_for('update')}}" method="post">
+
+        {% for row in data %}
+        {% for row in data %}
+        <input type="hidden" name="id" value="{{row[0]}}">
+        <label for="med">Medicine Name</label>
+        <select name="medname" id="med"  >
+            <option value="{{real[1]}}" disabled selected hidden>{{row[1]}}</option>
+            <option value="1">Paracetamol</option>
+            <option value="2">Alaxan</option>
+        </select><br><br>
+
+        <label for="truck">Delivery Truck (platenumber)</label>
+        <select name="truck" id="truck" >
+            <option value="{{real(2)}}" disabled selected hidden>{{row[2]}}</option>
+            <option value="1">djq112jd</option>
+            <option value="2">2873jdfh1</option> 
+            <option value="3">hhwu112</option> 
+            <option value="4">221d1d1</option>
+            <option value="5">qwe221ew</option>
+        </select><br><br>
+
+        <label for="area">Storage Area</label>
+        <select name="area" id="area" >
+            <option value="{{real3}}" disabled selected hidden>{{row[3]}}</option>
+            <option value="Section 1">Area 1</option>
+            <option value="Section 2">Area 2</option>
+            <option value="Section 3">Area 3</option>
+        </select><br><br>
+
+
+        <label for="empname">Employee Encharge</label>
+        <select name="empname" id="empname">
+            <option value="{{real4}}" disabled selected hidden>{{row[4]}}</option>
+            <option value="1">jan Lawrence Cebrian</option>
+            <option value="2">Jerson Butawan</option>
+        </select><br><br>
+
+        <label for="imdate">Import Date</label>
+        <input type="date" name="imprtdate" id="imdate" value="{{row[5]}}"  >
+        <br><br>
+        <label for="exdate">Expriration Date</label>
+        <input type="date" name="exprdate" id="exdate" value="{{row[6]}}" >
+        <br><br>
+        <label for="tprod">How Many Products</label>
+        <input type="number" name="tproducts" id="tprod" value="{{row[7]}}"  >
+        <br><br>
+        <button type="submit">
+            Submit
+        </button>
+        {% endfor %}
+        {% endfor %}
+    </form>
+</body>
+</html>

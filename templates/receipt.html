@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+</head>
+
+<body>
+    <a href="{{url_for('inventory')}}"><button>back</button></a>
+    <h2>Receipt</h2>
+    <p>Medicine Name: {{ mname }}</p>
+    <p>Truck ID: {{ truck }}</p>
+    <p>Storage Area: {{ area }}</p>
+    <p>Employee ID: {{ emp }}</p>
+    <p>Import Date: {{ import_date }}</p>
+    <p>Expiration Date: {{ expiration_date}}</p>
+    <p>Total Products: {{ quantity }}</p>
+</body>
+    <script>
+        function printReceipt() {
+            window.print();
+        }
+    </script>
+</html>
